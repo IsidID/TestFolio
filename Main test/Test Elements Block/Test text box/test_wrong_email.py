@@ -1,5 +1,5 @@
 import sys
-sys.path.append('/Users/romanbilokinsky/PycharmProjects/TestFolio')
+sys.path.append('/home/runner/work/TestFolio/TestFolio')
 import os
 import pytest
 import allure
