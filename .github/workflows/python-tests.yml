@@ -1,0 +1,29 @@
+name: Python Tests
+
+on:
+  push:
+    branches:
+      - main  # Adjust to match the branch you want to trigger the workflow on
+
+jobs:
+  test:
+    runs-on: ubuntu-latest  # Use the latest version of Ubuntu as the runner
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2  # Checks out your code from the repository
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.11.2  # Specify the Python version you need
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+        working-directory:  /home/runner/work/TestFolio/TestFolio  # Set the working directory where your code is located
+
+      - name: Run tests
+        run: |
+          pytest
+        working-directory:  /home/runner/work/TestFolio/TestFolio  # Set the working directory where your code is located
