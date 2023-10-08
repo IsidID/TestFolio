@@ -20,17 +20,23 @@ jobs:
         with:
           python-version: 3.x
 
+      - name: Install Chrome
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y google-chrome-stable
+        # You may need to adjust this installation based on your specific environment.
+
       - name: Install dependencies
         run: |
           cd /home/runner/work/TestFolio/TestFolio
           pip install -r requirements.txt
         working-directory: /home/runner/work/TestFolio/TestFolio
 
-      - name: Kill Chrome Processes
-        run: pkill chrome || true
-
       - name: Run tests
         run: |
           cd /home/runner/work/TestFolio/TestFolio
           pytest
         working-directory: /home/runner/work/TestFolio/TestFolio
+
+      - name: Kill Chrome Processes
+        run: pkill chrome || true
