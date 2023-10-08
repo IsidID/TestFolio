@@ -26,6 +26,9 @@ jobs:
           pip install -r requirements.txt
         working-directory: /home/runner/work/TestFolio/TestFolio
 
+      - name: Kill Chrome Processes
+        run: pkill chrome || true
+
       - name: Run tests
         run: |
           cd /home/runner/work/TestFolio/TestFolio
