@@ -28,12 +28,13 @@ class TestCheckbox:
     def setup(self):
         options = webdriver.ChromeOptions()
         # options.add_argument('--headless')  # Comment this line to open in the browser
-        driver = webdriver.Chrome(executable_path=ChromeDriverManager().install(), chrome_options=options)
+        driver = webdriver.Chrome(options=options)
         driver.get(url + 'checkbox')
         driver.implicitly_wait(10)
         driver.maximize_window()
         yield driver
         driver.quit()
+
 
 
     @allure.epic('Checkbox testing')
