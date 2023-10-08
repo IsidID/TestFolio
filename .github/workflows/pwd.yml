@@ -1,5 +1,9 @@
+name: Check Working Directory
+
+on: [push]
+
 jobs:
-  test:
+  check-directory:
     runs-on: ubuntu-latest
 
     steps:
