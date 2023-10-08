@@ -1,0 +1,13 @@
+name: Check Working Directory
+
+on: [push]
+
+jobs:
+  check-directory:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check Working Directory
+        run: |
+          echo "Current working directory: $(pwd)"
+          ls -l  # List the contents of the current directory
