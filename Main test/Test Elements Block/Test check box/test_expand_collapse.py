@@ -27,7 +27,7 @@ class TestCheckbox:
     @pytest.fixture()
     def setup(self):
         options = webdriver.ChromeOptions()
-        # options.add_argument('--headless')  # Comment this line to open in the browser
+        options.add_argument('--headless')  # Comment this line to open in the browser
         driver = webdriver.Chrome(options=options)
         driver.get(url + 'checkbox')
         driver.implicitly_wait(10)
