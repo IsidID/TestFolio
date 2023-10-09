@@ -35,7 +35,7 @@ class Test_Text_Box_Form:
         options = webdriver.ChromeOptions()
         options.add_argument('--headless')  # Comment this line to open in the browser
         driver = webdriver.Chrome(options=options)
-        driver.get(url + 'checkbox')
+        driver.get(url + 'text-box')
         driver.implicitly_wait(10)
         driver.maximize_window()
         yield driver
