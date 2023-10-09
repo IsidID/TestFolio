@@ -49,7 +49,7 @@ jobs:
 
       - name: Create Allure results directory with current date and time
         run: |
-          current_datetime=$(date +\%Y-\%m-\%d_\%H-\%M-\%S)
+          export current_datetime=$(date +\%Y-\%m-\%d_\%H-\%M-\%S)
           mkdir -p /home/runner/work/TestFolio/TestFolio/allure-results/$current_datetime
         working-directory: /home/runner/work/TestFolio/TestFolio
 
@@ -76,14 +76,12 @@ jobs:
 
       - name: Copy Allure artifacts to allure-results directory
         run: |
-          current_datetime=$(date +\%Y-\%m-\%d_\%H-\%M-\%S)
           mkdir -p /home/runner/work/TestFolio/TestFolio/allure-results/$current_datetime
           cp -r /home/runner/work/TestFolio/TestFolio/allure-report /home/runner/work/TestFolio/TestFolio/allure-results/$current_datetime
         working-directory: /home/runner/work/TestFolio/TestFolio
 
       - name: Copy Allure artifacts to netlify_reports directory and clear it
         run: |
-          current_datetime=$(date +\%Y-\%m-\%d_\%H-\%M-\%S)
           netlify_reports_directory="netlify_reports"
 
           # Clear the netlify_reports directory
