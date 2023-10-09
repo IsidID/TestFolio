@@ -63,18 +63,16 @@ jobs:
           allure generate allure-results/$CURRENT_DATETIME --clean -o allure-report
         working-directory: /home/runner/work/TestFolio/TestFolio
 
-      - name: Start web server
+      - name: Rename Allure reports with datetime
         run: |
-          cd /home/runner/work/TestFolio/TestFolio
-          # Start the Allure web server in the background
-          allure serve allure-report &
-          # Print a message indicating that the web server has started
-          echo "Allure web server started."
-        working-directory: /home/runner/work/TestFolio/TestFolio
+          cd /home/runner/work/TestFolio/TestFolio/allure-report
+          for file in *; do
+            mv "$file" "${file}_${CURRENT_DATETIME}"
+          done
+        working-directory: /home/runner/work/TestFolio/TestFolio/allure-report
 
-      - name: Wait for tests to complete
-        run: sleep 5m
-        # Adjust the sleep duration as needed to ensure the tests have enough time to complete
-
-      - name: Kill Chrome Processes
-        run: pkill chrome || true
+      - name: Save Allure reports as artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: allure-reports
+          path: /home/runner/work/TestFolio/TestFolio/allure-report
