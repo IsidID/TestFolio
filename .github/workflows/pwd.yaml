@@ -16,6 +16,7 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v2
 
-      - name: Run My Command
+      - name: Print Working Directory
         run: |
-          # Your commands here
+          # This command will print the current working directory
+          pwd
