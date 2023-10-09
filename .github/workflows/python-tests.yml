@@ -75,8 +75,8 @@ jobs:
 
       - name: Commit and push Allure reports to the repository
         run: |
-          git config user.name "Your GitHub Username"
-          git config user.email "Your GitHub Email Address"
+          git config user.name "isidID"
+          git config user.email "isidzukuro@gmail.com"
           git add .
           git commit -m "Add Allure reports"
           git push origin main
