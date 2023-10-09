@@ -49,8 +49,10 @@ jobs:
       - name: Run tests and generate Allure report
         run: |
           cd /home/runner/work/TestFolio/TestFolio
+          # Make sure 'allure' is in your PATH
+          allure --version
           # Run pytest and generate Allure report with the current date and time in the folder name
-          allure_pytest --alluredir=/home/runner/work/TestFolio/TestFolio/allure-results/$current_datetime
+          allure pytest --alluredir=/home/runner/work/TestFolio/TestFolio/allure-results/$current_datetime
         working-directory: /home/runner/work/TestFolio/TestFolio
 
       - name: Serve Allure report
