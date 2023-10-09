@@ -59,9 +59,10 @@ jobs:
         run: |
           cd /home/runner/work/TestFolio/TestFolio
           pytest
-          allure generate $allure_results_dir --clean -o $allure_results_dir/allure-report
+          allure generate $allure_results_dir/allure-report --clean -o $allure_results_dir/allure-report
           find $allure_results_dir
         working-directory: /home/runner/work/TestFolio/TestFolio
+
 
       - name: Serve Allure report
         run: allure serve $allure_results_dir/allure-report
