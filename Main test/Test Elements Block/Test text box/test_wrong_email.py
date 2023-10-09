@@ -33,12 +33,13 @@ class Test_Text_Box_Form:
     @pytest.fixture()
     def setup(self):
         options = webdriver.ChromeOptions()
-        self.driver = webdriver.Chrome(options=options)
-        self.driver.get(url + 'text-box')
-        self.driver.implicitly_wait(10)
-        self.driver.maximize_window()
-        yield self.driver
-        self.driver.quit()
+        options.add_argument('--headless')  # Comment this line to open in the browser
+        driver = webdriver.Chrome(options=options)
+        driver.get(url + 'checkbox')
+        driver.implicitly_wait(10)
+        driver.maximize_window()
+        yield driver
+        driver.quit()
 
     @allure.epic('Test text box testing')
     @allure.title('User fill in all fields and submit the form')
