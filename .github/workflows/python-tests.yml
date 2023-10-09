@@ -64,7 +64,7 @@ jobs:
         working-directory: /home/runner/work/TestFolio/TestFolio
 
       - name: Serve Allure report
-        run: allure serve $allure_results_dir/allure-report
+        run: allure serve /home/runner/work/TestFolio/TestFolio/allure-results/allure-report
         working-directory: /home/runner/work/TestFolio/TestFolio
 
       - name: Generate static Allure report
