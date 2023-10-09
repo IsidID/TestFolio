@@ -63,12 +63,18 @@ jobs:
           allure generate allure-results/$CURRENT_DATETIME --clean -o allure-report
         working-directory: /home/runner/work/TestFolio/TestFolio
 
-      - name: Serve Allure report
+      - name: Start web server
         run: |
           cd /home/runner/work/TestFolio/TestFolio
-          # Serve the Allure report
-          allure serve allure-report
+          # Start the Allure web server in the background
+          allure serve allure-report &
+          # Print a message indicating that the web server has started
+          echo "Allure web server started."
         working-directory: /home/runner/work/TestFolio/TestFolio
+
+      - name: Wait for tests to complete
+        run: sleep 5m
+        # Adjust the sleep duration as needed to ensure the tests have enough time to complete
 
       - name: Kill Chrome Processes
         run: pkill chrome || true
