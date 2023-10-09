@@ -32,12 +32,19 @@ jobs:
           pip install -r requirements.txt
         working-directory: /home/runner/work/TestFolio/TestFolio
 
+      - name: Install Java
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y openjdk-11-jre
+        # Adjust the version of Java as needed.
+
       - name: Install Allure CLI
         run: |
           # Download and install Allure CLI
           wget https://github.com/allure-framework/allure2/releases/download/2.15.0/allure-2.15.0.tgz
           tar -zxvf allure-2.15.0.tgz
-          sudo mv allure-2.15.0/bin/allure /usr/local/bin/
+          sudo mv allure-2.15.0 /opt/allure
+          sudo ln -s /opt/allure/bin/allure /usr/local/bin/allure
         working-directory: /home/runner/work/TestFolio/TestFolio
 
       - name: Create Allure results directory with current date and time
