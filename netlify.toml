@@ -1,5 +1,5 @@
 [build]
-  command = "npm install -g allure-commandline && npm run build-allure && ntli build -a"
+  command = "npm install -g allure-commandline && allure generate . --clean -o netlify_reports/allure-report && ntli build -a"
   publish = "netlify_reports/allure-report"
 
 [functions]
