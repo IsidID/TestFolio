@@ -64,7 +64,7 @@ jobs:
         working-directory: /home/runner/work/TestFolio/TestFolio
 
       - name: Serve Allure report
-        run: allure serve /home/runner/work/TestFolio/TestFolio/allure-results/allure-report
+        run: allure serve /home/runner/work/TestFolio/TestFolio/allure-results/allure-report -h netlify_reports/allure-report
         working-directory: /home/runner/work/TestFolio/TestFolio
 
       - name: Generate static Allure report
@@ -75,11 +75,6 @@ jobs:
         with:
           name: allure-reports
           path: /home/runner/work/TestFolio/TestFolio/allure-static-report
-
-      - name: Copy Allure artifacts to allure-results directory
-        run: |
-          cp -r /home/runner/work/TestFolio/TestFolio/allure-results/allure-report /home/runner/work/TestFolio/TestFolio/allure-results/$current_date
-        working-directory: /home/runner/work/TestFolio/TestFolio
 
       - name: Copy Allure artifacts to netlify_reports directory and clear it
         run: |
