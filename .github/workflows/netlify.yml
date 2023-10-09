@@ -1,9 +1,10 @@
 name: Deploy to Netlify
 
 on:
-  push:
-    branches:
-      - main
+  workflow_run:
+    workflows: ["Python Tests"]
+    types:
+      - completed
 
 jobs:
   build:
