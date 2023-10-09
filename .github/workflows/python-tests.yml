@@ -64,11 +64,11 @@ jobs:
         working-directory: /home/runner/work/TestFolio/TestFolio
 
       - name: Serve Allure report
-        run: allure serve /home/runner/work/TestFolio/TestFolio/allure-results/allure-report
+        run: allure serve $allure_results_dir/allure-report
         working-directory: /home/runner/work/TestFolio/TestFolio
 
       - name: Generate static Allure report
-        run: allure generate /home/runner/work/TestFolio/TestFolio/allure-results/allure-report -o /home/runner/work/TestFolio/TestFolio/allure-static-report
+        run: allure generate /home/runner/work/TestFolio/TestFolio/allure-results -o /home/runner/work/TestFolio/TestFolio/allure-static-report
 
       - name: Upload Allure reports as artifacts
         uses: actions/upload-artifact@v2
