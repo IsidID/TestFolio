@@ -35,8 +35,8 @@ jobs:
       - name: Run tests and generate Allure report
         run: |
           cd /home/runner/work/TestFolio/TestFolio
-          # Run pytest and generate Allure report with a directory named with the current date and time
-          allure_pytest --alluredir=/home/runner/work/TestFolio/TestFolio/allure-results/$(date +\%Y-\%m-\%d_\%H-\%M-\%S)
+          # Specify the full path to allure_pytest
+          /path/to/allure_pytest --alluredir=/home/runner/work/TestFolio/TestFolio/allure-results/$(date +\%Y-\%m-\%d_\%H-\%M-\%S)
         working-directory: /home/runner/work/TestFolio/TestFolio
 
       - name: Serve Allure report
