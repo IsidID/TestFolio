@@ -64,7 +64,7 @@ jobs:
         working-directory: /home/runner/work/TestFolio/TestFolio
 
       - name: Generate Allure report
-        run: allure generate /home/runner/work/TestFolio/TestFolio/allure-results/allure-report -o netlify_reports/allure-report
+        run: allure generate /home/runner/work/TestFolio/TestFolio/allure-results/allure-report -o netlify_reports/allure-report --clean
         working-directory: /home/runner/work/TestFolio/TestFolio
 
       - name: Generate static Allure report
