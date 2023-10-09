@@ -3,7 +3,7 @@ name: Deploy to Netlify
 on:
   push:
     branches:
-      - main # змініть на вашу гілку
+      - main
 
 jobs:
   build:
@@ -14,7 +14,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Build and deploy
-        uses: netlify/actions/cli@2.309.0
+        uses: netlify/actions/cli@v2
         with:
           args: deploy --prod
         env:
