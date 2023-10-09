@@ -49,24 +49,26 @@ jobs:
 
       - name: Create Allure results directory with current date and time
         run: |
-          export current_datetime=$(date +\%Y-\%m-\%d_\%H-\%M-\%S)
-          mkdir -p /home/runner/work/TestFolio/TestFolio/allure-results/$current_datetime
+          current_datetime=$(date +\%Y-\%m-\%d_\%H-\%M-\%S)
+          allure_results_dir="/home/runner/work/TestFolio/TestFolio/allure-results/$current_datetime"
+          mkdir -p $allure_results_dir
+          echo "Allure results directory: $allure_results_dir"
         working-directory: /home/runner/work/TestFolio/TestFolio
 
       - name: Run tests with pytest and generate Allure report
         run: |
           cd /home/runner/work/TestFolio/TestFolio
           pytest
-          allure generate allure-results/$current_datetime --clean -o allure-report
-          find /home/runner/work/TestFolio/TestFolio/allure-results/$current_datetime
+          allure generate $allure_results_dir --clean -o allure-report
+          find $allure_results_dir
         working-directory: /home/runner/work/TestFolio/TestFolio
 
       - name: Serve Allure report
-        run: allure serve /home/runner/work/TestFolio/TestFolio/allure-results/$current_datetime/allure-report
+        run: allure serve $allure_results_dir/allure-report
         working-directory: /home/runner/work/TestFolio/TestFolio
 
       - name: Generate static Allure report
-        run: allure generate /home/runner/work/TestFolio/TestFolio/allure-results/$current_datetime/allure-report -o /home/runner/work/TestFolio/TestFolio/allure-static-report
+        run: allure generate $allure_results_dir/allure-report -o /home/runner/work/TestFolio/TestFolio/allure-static-report
 
       - name: Upload Allure reports as artifacts
         uses: actions/upload-artifact@v2
@@ -76,8 +78,7 @@ jobs:
 
       - name: Copy Allure artifacts to allure-results directory
         run: |
-          mkdir -p /home/runner/work/TestFolio/TestFolio/allure-results/$current_datetime
-          cp -r /home/runner/work/TestFolio/TestFolio/allure-report /home/runner/work/TestFolio/TestFolio/allure-results/$current_datetime
+          cp -r $allure_results_dir/allure-report /home/runner/work/TestFolio/TestFolio/allure-results/$current_datetime
         working-directory: /home/runner/work/TestFolio/TestFolio
 
       - name: Copy Allure artifacts to netlify_reports directory and clear it
@@ -89,7 +90,7 @@ jobs:
 
           # Copy the contents of the latest Allure report to netlify_reports directory
           mkdir -p "$netlify_reports_directory"
-          cp -r /home/runner/work/TestFolio/TestFolio/allure-report "$netlify_reports_directory"
+          cp -r $allure_results_dir/allure-report "$netlify_reports_directory"
         working-directory: /home/runner/work/TestFolio/TestFolio
 
       - name: Commit and push Allure reports to the repository
