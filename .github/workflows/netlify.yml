@@ -3,17 +3,17 @@ name: Deploy to Netlify
 on:
   push:
     branches:
-      - main # змініть на вашу гілку
+      - main
 
 jobs:
-  build:
+  build_and_deploy:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Build and deploy
+      - name: Build and deploy to Netlify
         uses: netlify/actions/cli@v1
         with:
           args: deploy --prod
