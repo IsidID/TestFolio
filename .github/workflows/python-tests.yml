@@ -53,20 +53,24 @@ jobs:
           mkdir -p /home/runner/work/TestFolio/TestFolio/allure-results/$current_datetime
         working-directory: /home/runner/work/TestFolio/TestFolio
 
-      - name: Run tests and generate Allure report
+      - name: Run tests with pytest
         run: |
           cd /home/runner/work/TestFolio/TestFolio
-          # Make sure 'allure' is in your PATH
-          allure --version
-          # Run pytest and generate Allure report with the current date and time in the folder name
-          allure pytest --alluredir=/home/runner/work/TestFolio/TestFolio/allure-results/$current_datetime
+          pytest
+        working-directory: /home/runner/work/TestFolio/TestFolio
+
+      - name: Generate Allure report
+        run: |
+          cd /home/runner/work/TestFolio/TestFolio
+          # Generate Allure report with the current date and time in the folder name
+          allure generate allure-results/$current_datetime --clean -o allure-report
         working-directory: /home/runner/work/TestFolio/TestFolio
 
       - name: Serve Allure report
         run: |
           cd /home/runner/work/TestFolio/TestFolio
-          # Serve the Allure report from the specified directory with the current date and time in the folder name
-          allure serve allure-results/$current_datetime
+          # Serve the Allure report
+          allure serve allure-report
         working-directory: /home/runner/work/TestFolio/TestFolio
 
       - name: Kill Chrome Processes
