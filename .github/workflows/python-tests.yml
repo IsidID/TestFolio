@@ -71,7 +71,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: allure-reports
-          path: /home/runner/work/TestFolio/TestFolio/allure-static-report
+          path: /home/runner/work/TestFolio/TestFolio/allure-results/allure-report
 
       - name: Copy Allure artifacts to netlify_reports directory and clear it
         run: |
