@@ -53,15 +53,21 @@ jobs:
           mkdir -p /home/runner/work/TestFolio/TestFolio/allure-results/$current_datetime
         working-directory: /home/runner/work/TestFolio/TestFolio
 
-      - name: Run tests with pytest and generate static Allure report
+      - name: Run tests with pytest and generate single HTML Allure report
         run: |
           cd /home/runner/work/TestFolio/TestFolio
           pytest
-          allure generate allure-results/$current_datetime --clean -o allure-report --static-dir allure-report/static
+          allure generate allure-results/$current_datetime --clean -o allure-report --report-dir allure-report/single-html-report
         working-directory: /home/runner/work/TestFolio/TestFolio
 
-      - name: Upload Allure reports as artifacts
+      - name: Move single HTML report to the root
+        run: |
+          cd /home/runner/work/TestFolio/TestFolio
+          mv allure-report/single-html-report/index.html allure-report/allure-report.html
+        working-directory: /home/runner/work/TestFolio/TestFolio
+
+      - name: Upload Allure report as an artifact
         uses: actions/upload-artifact@v2
         with:
-          name: allure-reports
+          name: allure-report
           path: /home/runner/work/TestFolio/TestFolio/allure-report
