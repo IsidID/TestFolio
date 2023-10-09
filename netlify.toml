@@ -1,5 +1,19 @@
 [build]
-  command = "npm run build"  # Замініть цю команду на команду для збірки вашого проекту
+command="ntli build -a"
+publish=".ntli/site/static"
 
-[[plugins]]
-  package = "@netlify/plugin-functions"
+[functions]
+directory=".ntli/site/netlify/functions"
+node_bundler = "esbuild"
+
+[[headers]]
+for="/ui/*"
+[headers.values]
+Access-Control-Allow-Origin="*"
+Access-Control-Allow-Headers="*"
+Access-Control-Allow-Methods="*"
+
+[dev]
+autoLaunch = false
+functions = ".ntli/site/netlify/functions"
+publish = ".ntli/site/static"
