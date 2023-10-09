@@ -1,4 +1,4 @@
-name: Python Tests
+name: Run tests and publish report
 
 on:
   push:
@@ -72,18 +72,6 @@ jobs:
         with:
           name: allure-reports
           path: /home/runner/work/TestFolio/TestFolio/allure-results/allure-report
-
-      - name: Copy Allure artifacts to netlify_reports directory and clear it
-        run: |
-          netlify_reports_directory="netlify_reports"
-
-          # Clear the netlify_reports directory
-          rm -rf "$netlify_reports_directory"/*
-
-          # Copy the contents of the latest Allure report to netlify_reports directory
-          mkdir -p "$netlify_reports_directory"
-          cp -r /home/runner/work/TestFolio/TestFolio/allure-results/allure-report "$netlify_reports_directory"
-        working-directory: /home/runner/work/TestFolio/TestFolio
 
       - name: Commit and push Allure reports to the repository
         run: |
