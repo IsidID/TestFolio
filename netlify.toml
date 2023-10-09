@@ -1,19 +1,17 @@
 [build]
-command = "npm install -g allure-commandline && npm run build-allure && ntli build -a"
-publish = ".ntli/site/static"
+  command = "npm install -g allure-commandline && npm run build-allure && ntli build -a"
+  publish = "netlify_reports/allure-report"
 
 [functions]
-directory = ".ntli/site/netlify/functions"
-node_bundler = "esbuild"
+  directory = ".ntli/site/netlify/functions"
+  node_bundler = "esbuild"
 
 [[headers]]
-for = "/ui/*"
-[headers.values]
-Access-Control-Allow-Origin = "*"
-Access-Control-Allow-Headers = "*"
-Access-Control-Allow-Methods = "*"
+  for = "/allure-report/*"
+  [headers.values]
+  Cache-Control = "public, max-age=0, must-revalidate"
 
 [dev]
-autoLaunch = false
-functions = ".ntli/site/netlify/functions"
-publish = ".ntli/site/static"
+  autoLaunch = false
+  functions = ".ntli/site/netlify/functions"
+  publish = "netlify_reports/allure-report"
