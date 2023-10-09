@@ -32,18 +32,24 @@ jobs:
           pip install -r requirements.txt
         working-directory: /home/runner/work/TestFolio/TestFolio
 
+      - name: Create Allure results directory with current date and time
+        run: |
+          current_datetime=$(date +\%Y-\%m-\%d_\%H-\%M-\%S)
+          mkdir -p /home/runner/work/TestFolio/TestFolio/allure-results/$current_datetime
+        working-directory: /home/runner/work/TestFolio/TestFolio
+
       - name: Run tests and generate Allure report
         run: |
           cd /home/runner/work/TestFolio/TestFolio
-          # Specify the full path to allure_pytest
-          /path/to/allure_pytest --alluredir=/home/runner/work/TestFolio/TestFolio/allure-results/$(date +\%Y-\%m-\%d_\%H-\%M-\%S)
+          # Run pytest and generate Allure report with the current date and time in the folder name
+          allure_pytest --alluredir=/home/runner/work/TestFolio/TestFolio/allure-results/$current_datetime
         working-directory: /home/runner/work/TestFolio/TestFolio
 
       - name: Serve Allure report
         run: |
           cd /home/runner/work/TestFolio/TestFolio
-          # Serve the Allure report from the specified directory
-          allure serve allure-results/$(date +\%Y-\%m-\%d_\%H-\%M-\%S)
+          # Serve the Allure report from the specified directory with the current date and time in the folder name
+          allure serve allure-results/$current_datetime
         working-directory: /home/runner/work/TestFolio/TestFolio
 
       - name: Kill Chrome Processes
