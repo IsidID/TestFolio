@@ -32,6 +32,14 @@ jobs:
           pip install -r requirements.txt
         working-directory: /home/runner/work/TestFolio/TestFolio
 
+      - name: Install Allure CLI
+        run: |
+          # Download and install Allure CLI
+          wget https://github.com/allure-framework/allure2/releases/download/2.15.0/allure-2.15.0.tgz
+          tar -zxvf allure-2.15.0.tgz
+          sudo mv allure-2.15.0/bin/allure /usr/local/bin/
+        working-directory: /home/runner/work/TestFolio/TestFolio
+
       - name: Create Allure results directory with current date and time
         run: |
           current_datetime=$(date +\%Y-\%m-\%d_\%H-\%M-\%S)
