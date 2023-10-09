@@ -9,7 +9,14 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
+    env:
+      CURRENT_DATETIME: ${{ steps.set_datetime.outputs.datetime }}
+
     steps:
+      - name: Set current date and time
+        id: set_datetime
+        run: echo "datetime=$(date +\%Y-\%m-\%d_\%H-\%M-\%S)" >> $GITHUB_ENV
+
       - name: Checkout code
         uses: actions/checkout@v2
         with:
@@ -49,21 +56,21 @@ jobs:
 
       - name: Create Allure results directory with current date and time
         run: |
-          current_datetime=$(date +\%Y-\%m-\%d_\%H-\%M-\%S)
-          mkdir -p /home/runner/work/TestFolio/TestFolio/allure-results/$current_datetime
+          mkdir -p /home/runner/work/TestFolio/TestFolio/allure-results/$CURRENT_DATETIME
         working-directory: /home/runner/work/TestFolio/TestFolio
 
-      - name: Run tests with pytest
+      - name: Run tests with pytest and generate Allure report
         run: |
           cd /home/runner/work/TestFolio/TestFolio
-          pytest
+          # Run pytest with Allure and generate the report
+          pytest --alluredir=/home/runner/work/TestFolio/TestFolio/allure-results/$CURRENT_DATETIME
         working-directory: /home/runner/work/TestFolio/TestFolio
 
       - name: Generate Allure report
         run: |
           cd /home/runner/work/TestFolio/TestFolio
           # Generate Allure report with the current date and time in the folder name
-          allure generate allure-results/$current_datetime --clean -o allure-report
+          allure generate allure-results/$CURRENT_DATETIME --clean -o allure-report
         working-directory: /home/runner/work/TestFolio/TestFolio
 
       - name: Serve Allure report
