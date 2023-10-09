@@ -58,6 +58,7 @@ jobs:
           cd /home/runner/work/TestFolio/TestFolio
           pytest
           allure generate allure-results/$current_datetime --clean -o allure-report
+          find /home/runner/work/TestFolio/TestFolio/allure-results/$current_datetime
         working-directory: /home/runner/work/TestFolio/TestFolio
 
       - name: Upload Allure reports as artifacts
@@ -85,7 +86,6 @@ jobs:
           mkdir -p "$netlify_reports_directory"
           cp -r /home/runner/work/TestFolio/TestFolio/allure-report "$netlify_reports_directory"
         working-directory: /home/runner/work/TestFolio/TestFolio
-
 
       - name: Commit and push Allure reports to the repository
         run: |
