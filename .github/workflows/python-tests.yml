@@ -75,7 +75,7 @@ jobs:
 
       - name: Push Allure reports to repository
         run: |
-          git config user.name "Roman Bilokinskyi"
+          git config user.name "isidID"
           git config user.email "isidzukuro@gmail.com"
           git add .
           git commit -m "Add Allure reports"
