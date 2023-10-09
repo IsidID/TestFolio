@@ -14,4 +14,4 @@
 [dev]
   autoLaunch = false
   functions = ".ntli/site/netlify/functions"
-  publish = "netlify_reports/allure-report"
+  publish = "https://isidid.github.io/TestFolio"
