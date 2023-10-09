@@ -3,18 +3,18 @@ name: Deploy to Netlify
 on:
   push:
     branches:
-      - main
+      - main # змініть на вашу гілку
 
 jobs:
-  build_and_deploy:
+  build:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Build and deploy to Netlify
-        uses: netlify/actions/cli@v1
+      - name: Build and deploy
+        uses: netlify/actions/cli@2.0.10 # Замініть на потрібну версію
         with:
           args: deploy --prod
         env:
