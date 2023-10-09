@@ -61,11 +61,18 @@ jobs:
           find /home/runner/work/TestFolio/TestFolio/allure-results/$current_datetime
         working-directory: /home/runner/work/TestFolio/TestFolio
 
+      - name: Serve Allure report
+        run: allure serve /home/runner/work/TestFolio/TestFolio/allure-results/$current_datetime/allure-report
+        working-directory: /home/runner/work/TestFolio/TestFolio
+
+      - name: Generate static Allure report
+        run: allure generate /home/runner/work/TestFolio/TestFolio/allure-results/$current_datetime/allure-report -o /home/runner/work/TestFolio/TestFolio/allure-static-report
+
       - name: Upload Allure reports as artifacts
         uses: actions/upload-artifact@v2
         with:
           name: allure-reports
-          path: /home/runner/work/TestFolio/TestFolio/allure-report
+          path: /home/runner/work/TestFolio/TestFolio/allure-static-report
 
       - name: Copy Allure artifacts to allure-results directory
         run: |
