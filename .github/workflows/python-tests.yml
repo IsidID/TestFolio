@@ -72,3 +72,12 @@ jobs:
           mkdir -p /home/runner/work/TestFolio/TestFolio/allure-results/$current_datetime
           cp -r /home/runner/work/TestFolio/TestFolio/allure-report /home/runner/work/TestFolio/TestFolio/allure-results/$current_datetime
         working-directory: /home/runner/work/TestFolio/TestFolio
+
+      - name: Push Allure reports to repository
+        run: |
+          git config user.name "Roman Bilokinskyi"
+          git config user.email "isidzukuro@gmail.com"
+          git add .
+          git commit -m "Add Allure reports"
+          git push origin main
+        working-directory: /home/runner/work/TestFolio/TestFolio
