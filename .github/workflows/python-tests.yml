@@ -47,31 +47,20 @@ jobs:
           sudo ln -s /opt/allure/bin/allure /usr/local/bin/allure
         working-directory: /home/runner/work/TestFolio/TestFolio
 
+      - name: Create Allure results directory with current date and time
+        run: |
+          current_datetime=$(date +\%Y-\%m-\%d_\%H-\%M-\%S)
+          mkdir -p /home/runner/work/TestFolio/TestFolio/allure-results/$current_datetime
+        working-directory: /home/runner/work/TestFolio/TestFolio
+
       - name: Run tests with pytest and generate Allure report
         run: |
-          CURRENT_DATETIME=$(date +\%Y-\%m-\%d_\%H-\%M-\%S)
-          echo "datetime=$CURRENT_DATETIME" >> $GITHUB_ENV
           cd /home/runner/work/TestFolio/TestFolio
-          # Run pytest with Allure and generate the report
-          pytest --alluredir=/home/runner/work/TestFolio/TestFolio/allure-results/$CURRENT_DATETIME
+          pytest
+          allure generate allure-results/$current_datetime --clean -o allure-report
         working-directory: /home/runner/work/TestFolio/TestFolio
 
-      - name: Generate Allure report
-        run: |
-          cd /home/runner/work/TestFolio/TestFolio
-          # Generate Allure report with the current date and time in the folder name
-          allure generate allure-results/$CURRENT_DATETIME --clean -o allure-report
-        working-directory: /home/runner/work/TestFolio/TestFolio
-
-      - name: Rename Allure reports with datetime
-        run: |
-          cd /home/runner/work/TestFolio/TestFolio/allure-report
-          for file in *; do
-            mv "$file" "${file}_${CURRENT_DATETIME}"
-          done
-        working-directory: /home/runner/work/TestFolio/TestFolio/allure-report
-
-      - name: Save Allure reports as artifacts
+      - name: Upload Allure reports as artifacts
         uses: actions/upload-artifact@v2
         with:
           name: allure-reports
