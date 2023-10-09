@@ -1,5 +1,5 @@
 [build]
-command = "ntli build -a && npm run generate-allure"
+command = "npm run build-allure && ntli build -a"
 publish = ".ntli/site/static"
 
 [functions]
