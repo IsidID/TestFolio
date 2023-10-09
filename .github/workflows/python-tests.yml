@@ -65,3 +65,10 @@ jobs:
         with:
           name: allure-reports
           path: /home/runner/work/TestFolio/TestFolio/allure-report
+
+      - name: Copy Allure artifacts to allure-results directory
+        run: |
+          current_datetime=$(date +\%Y-\%m-\%d_\%H-\%M-\%S)
+          mkdir -p /home/runner/work/TestFolio/TestFolio/allure-results/$current_datetime
+          cp -r /home/runner/work/TestFolio/TestFolio/allure-report /home/runner/work/TestFolio/TestFolio/allure-results/$current_datetime
+        working-directory: /home/runner/work/TestFolio/TestFolio
