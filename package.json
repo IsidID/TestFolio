@@ -7,7 +7,8 @@
     "build": "ntli build -a",
     "dev": "ntli dev -c",
     "preview": "ntli preview",
-    "generate-allure": "allure generate . --clean -o netlify_reports/allure-report"
+    "generate-allure": "allure generate . --clean -o netlify_reports/allure-report",
+    "build-allure": "npm install -g allure-commandline"
   },
   "dependencies": {
     "@netlify/sdk": "^1.0.9",
