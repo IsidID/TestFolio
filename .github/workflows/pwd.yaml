@@ -1,7 +1,21 @@
+name: My Workflow
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
 jobs:
   my_job:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Check Current Directory
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Run My Command
         run: |
-          echo "Current Directory: $GITHUB_WORKSPACE"
+          # Your commands here
