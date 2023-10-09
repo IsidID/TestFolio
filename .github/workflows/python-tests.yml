@@ -73,11 +73,12 @@ jobs:
           cp -r /home/runner/work/TestFolio/TestFolio/allure-report /home/runner/work/TestFolio/TestFolio/allure-results/$current_datetime
         working-directory: /home/runner/work/TestFolio/TestFolio
 
-      - name: Push Allure reports to repository
+      - name: Commit and push Allure reports to the repository
         run: |
-          git config user.name "isidID"
-          git config user.email "isidzukuro@gmail.com"
+          git config user.name "Your GitHub Username"
+          git config user.email "Your GitHub Email Address"
           git add .
           git commit -m "Add Allure reports"
           git push origin main
-        working-directory: /home/runner/work/TestFolio/TestFolio
+        env:
+          PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
