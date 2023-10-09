@@ -6,7 +6,8 @@
   "scripts": {
     "build": "ntli build -a",
     "dev": "ntli dev -c",
-    "preview": "ntli preview"
+    "preview": "ntli preview",
+    "generate-allure": "allure generate . --clean -o netlify_reports/allure-report"
   },
   "dependencies": {
     "@netlify/sdk": "^1.0.9",
