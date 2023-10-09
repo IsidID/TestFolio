@@ -1,0 +1,5 @@
+[build]
+  command = "npm run build"  # Замініть цю команду на команду для збірки вашого проекту
+
+[[plugins]]
+  package = "@netlify/plugin-functions"
