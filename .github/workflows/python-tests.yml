@@ -47,10 +47,10 @@ jobs:
           sudo ln -s /opt/allure/bin/allure /usr/local/bin/allure
         working-directory: /home/runner/work/TestFolio/TestFolio
 
-      - name: Create Allure results directory with current date and time
+      - name: Create Allure results directory with current date
         run: |
-          current_datetime=$(date +\%Y-\%m-\%d_\%H-\%M-\%S)
-          allure_results_dir="/home/runner/work/TestFolio/TestFolio/allure-results/$current_datetime"
+          current_date=$(date +\%Y-\%m-\%d)
+          allure_results_dir="/home/runner/work/TestFolio/TestFolio/allure-results/$current_date"
           mkdir -p $allure_results_dir
           echo "Allure results directory: $allure_results_dir"
         working-directory: /home/runner/work/TestFolio/TestFolio
@@ -59,7 +59,7 @@ jobs:
         run: |
           cd /home/runner/work/TestFolio/TestFolio
           pytest
-          allure generate $allure_results_dir --clean -o allure-report
+          allure generate $allure_results_dir --clean -o $allure_results_dir/allure-report
           find $allure_results_dir
         working-directory: /home/runner/work/TestFolio/TestFolio
 
@@ -78,7 +78,7 @@ jobs:
 
       - name: Copy Allure artifacts to allure-results directory
         run: |
-          cp -r $allure_results_dir/allure-report /home/runner/work/TestFolio/TestFolio/allure-results/$current_datetime
+          cp -r $allure_results_dir/allure-report /home/runner/work/TestFolio/TestFolio/allure-results/$current_date
         working-directory: /home/runner/work/TestFolio/TestFolio
 
       - name: Copy Allure artifacts to netlify_reports directory and clear it
