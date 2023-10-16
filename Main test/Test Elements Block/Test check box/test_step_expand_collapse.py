@@ -1,6 +1,4 @@
 import sys
-import time
-
 sys.path.append('/home/runner/work/TestFolio/TestFolio')
 import allure
 import pytest
@@ -28,10 +26,11 @@ address2 = address()
 full_name = full_name()
 
 class TestCheckbox:
-    @pytest.fixture(scope='class')
-    def setup(cls):
+    @pytest.fixture()
+    def setup(self):
         options = webdriver.ChromeOptions()
-        driver = webdriver.Chrome(options=options, service=ChromeService(ChromeDriverManager().install()))
+        options.add_argument('--headless')  # Comment this line to open in the browser
+        driver = webdriver.Chrome(options=options)
         driver.get(url + 'checkbox')
         driver.implicitly_wait(10)
         driver.maximize_window()
