@@ -1,4 +1,0 @@
-"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
-"passed","Mon Oct 09 16:53:07 GMT 2023","Mon Oct 09 16:53:30 GMT 2023","23121","Main test.Test Elements Block.Test check box","test_expand_collapse","TestCheckbox","","","User can expand and collapse the tree","User can expand all levels subfolders and then collapse them"
-"passed","Mon Oct 09 16:53:48 GMT 2023","Mon Oct 09 16:53:49 GMT 2023","1084","Main test.Test Elements Block.Test text box","test_wrong_email","Test_Text_Box_Form","","","User fill in all fields and submit the form","User can't submit the form with the wrong email"
-"passed","Mon Oct 09 16:53:33 GMT 2023","Mon Oct 09 16:53:35 GMT 2023","1399","Main test.Test Elements Block.Test text box","test_positive_text_box","Test_Text_Box_Form","","","User fill in all fields and submit the form","User can fill in the input fields and submit the form"
