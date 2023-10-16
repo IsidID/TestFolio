@@ -30,6 +30,7 @@ class TestCheckbox:
     def setup(self):
         options = webdriver.ChromeOptions()
         options.add_argument('--headless')  # Comment this line to open in the browser
+        options.add_argument('--window-size=1920x1080')
         driver = webdriver.Chrome(options=options)
         driver.get(url + 'checkbox')
         driver.implicitly_wait(10)
