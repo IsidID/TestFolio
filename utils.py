@@ -43,7 +43,7 @@ def get_elements(driver, selector, value):
         raise ValueError("Invalid selector type. Please use one of: 'id', 'name', 'class', 'tag', 'link_text', 'partial_link_text', 'xpath', 'css'.")
 
 
-def click_element(driver, by, locator, timeout=20):
+def click_element(driver, by, locator, timeout=30):
     try:
         element = WebDriverWait(driver, timeout).until(
             EC.element_to_be_clickable((by, locator))
